@@ -1,0 +1,28 @@
+name: "Update ArgoCD Manifests"
+description: "Update the image tag in ArgoCD manifests repository"
+inputs:
+  repo-url:
+    description: "The URL of the ArgoCD manifests repository"
+    required: true
+  manifest-path:
+    description: "Path to the manifest file to update"
+    required: true
+  image-tag:
+    description: "The new image tag to replace"
+    required: true
+  username:
+    description: "GitHub username for commit"
+    required: true
+  email:
+    description: "GitHub email for commit"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.repo-url }}
+    - ${{ inputs.manifest-path }}
+    - ${{ inputs.image-tag }}
+    - ${{ inputs.username }}
+    - ${{ inputs.email }}
+

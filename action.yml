@@ -4,6 +4,10 @@ inputs:
   repo-url:
     description: "The URL of the ArgoCD manifests repository"
     required: true
+  repo-branch:
+    description: "The branch of the repository to check out"
+    required: false
+    default: "master"
   manifest-path:
     description: "Path to the manifest file to update"
     required: true
@@ -21,6 +25,7 @@ runs:
   image: "Dockerfile"
   args:
     - ${{ inputs.repo-url }}
+    - ${{ inputs.repo-branch}}
     - ${{ inputs.manifest-path }}
     - ${{ inputs.image-tag }}
     - ${{ inputs.username }}
